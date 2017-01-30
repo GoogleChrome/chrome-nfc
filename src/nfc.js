@@ -264,7 +264,20 @@ function NFC() {
           cb(rc);
         });
       }, timeout);
-    }
+    },
+
+    /*
+     *  Read only the tag id
+     * callback is called when a tag id was read with { tag_type: 'mifare_classic', tag_id: 'ABC123AB' }
+     */    
+    "readTagId": function (device, callback) {
+      wait_for_passive_target(device, function (rc, tag_type, tag_id) {
+        callback({
+          tag_type: tag_type,
+          tag_id: UTIL_BytesToHex(new Uint8Array(tag_id))
+          })
+        });
+      }
   };
 
   return pub;
