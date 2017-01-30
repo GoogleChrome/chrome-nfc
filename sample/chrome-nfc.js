@@ -735,12 +735,12 @@ function NFC() {
         cb(rc);
       });
     }, timeout);
-  }, "readTagId": function (device, callback) {
+  }, "read_tag_id": function (device, callback) {
     wait_for_passive_target(device, function (rc, tag_type, tag_id) {
-        callback({
-            tag_type: tag_type,
-            tag_id: UTIL_BytesToHex(new Uint8Array(tag_id))
-        })
+      callback({
+        tag_type: tag_type,
+        tag_id: UTIL_BytesToHex(new Uint8Array(tag_id))
+      })
     });
   }};
   return pub;
